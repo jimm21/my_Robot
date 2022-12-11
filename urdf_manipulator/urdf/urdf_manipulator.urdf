@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="urdf_manipulator">
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/theRobot</robotNamespace>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        <legacyModeNS>true</legacyModeNS>   
+    </plugin>
+  </gazebo>
+
+
+  <link name="world"/>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.032855 -2.0396E-07 0.032493"
+        rpy="0 0 0" />
+      <mass
+        value="3.6432" />
+      <inertia
+        ixx="0.029523"
+        ixy="1.0146E-10"
+        ixz="-0.00060761"
+        iyy="0.013131"
+        iyz="7.624E-09"
+        izz="0.017934" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_visual/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_collision/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin rpy="0 -1.57 3.14" xyz="0.0 0.0 0.0"/>
+  </joint>
+  <link
+    name="First_link">
+    <inertial>
+      <origin
+        xyz="0.14908 -1.0317E-07 -0.024905"
+        rpy="0 0 0" />
+      <mass
+        value="2.4062" />
+      <inertia
+        ixx="0.0043226"
+        ixy="-3.2997E-10"
+        ixz="-0.00050553"
+        iyy="0.011245"
+        iyz="-3.9943E-08"
+        izz="0.0086646" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_visual/First_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_collision/First_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="First_joint"
+    type="revolute">
+    <origin
+      xyz="0.06 0 0.193"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="First_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="200"
+      velocity="11.31" />
+  </joint>
+  <link
+    name="Second_link">
+    <inertial>
+      <origin
+        xyz="0.14908 -1.0316E-07 -0.024905"
+        rpy="0 0 0" />
+      <mass
+        value="2.4062" />
+      <inertia
+        ixx="0.0043226"
+        ixy="-3.2986E-10"
+        ixz="-0.00050553"
+        iyy="0.011245"
+        iyz="-3.9943E-08"
+        izz="0.0086646" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_visual/Second_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_collision/Second_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Second_joint"
+    type="revolute">
+    <origin
+      xyz="0.2 0 0.096"
+      rpy="0 0 0" />
+    <parent
+      link="First_link" />
+    <child
+      link="Second_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="200"
+      velocity="11.31" />
+  </joint>
+  <link
+    name="Third_link">
+    <inertial>
+      <origin
+        xyz="0.014263 -0.0047291 -0.018891"
+        rpy="0 0 0" />
+      <mass
+        value="0.43818" />
+      <inertia
+        ixx="0.0010137"
+        ixy="0.00011592"
+        ixz="0.0002587"
+        iyy="0.0018612"
+        iyz="-1.7606E-05"
+        izz="0.0013717" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_visual/Third_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_collision/Third_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Third_joint"
+    type="revolute">
+    <origin
+      xyz="0.2 0 0.096"
+      rpy="0 0 0" />
+    <parent
+      link="Second_link" />
+    <child
+      link="Third_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="200"
+      velocity="11.31" />
+  </joint>
+  <link
+    name="End_effector">
+    <inertial>
+      <origin
+        xyz="-0.076152 0.0 -0.01"
+        rpy="0 0 0" />
+      <mass
+        value="0.58939" />
+      <inertia
+        ixx="0.0003138"
+        ixy="2.4281E-12"
+        ixz="1.0912E-08"
+        iyy="0.0016307"
+        iyz="2.6044E-13"
+        izz="0.0016307" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 -0.12627 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_visual/End_effector.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 -0.12627 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_manipulator/meshes/meshes_collision/End_effector.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Flange"
+    type="fixed">
+    <origin
+      xyz="0.092444 0.0 0.061"
+      rpy="0 0 0" />
+    <parent
+      link="Third_link" />
+    <child
+      link="End_effector" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <transmission name="First_link_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="First_joint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="First_link_motor">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="Second_link_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Second_joint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Second_link_motor">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="Third_link_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Third_joint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Third_link_motor">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>

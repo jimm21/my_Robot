@@ -1,0 +1,27 @@
+theRobot:
+
+  joint_state_controller:
+    type: "joint_state_controller/JointStateController"
+    publish_rate: 100
+
+  joint_1_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: First_joint
+    pid: {p : 50, i : 0.0, d : 10}
+
+  joint_2_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: Second_joint
+    pid: {p : 50, i : 0.0, d : 10}
+
+  joint_3_pos_controller:
+    type: position_controllers/JointPositionController
+    joint: Third_joint
+    pid: {p : 50, i : 0.0, d : 10}
+
+  arm_controller:
+    type: position_controllers/JointTrajectoryController
+    joints: 
+      - First_joint
+      - Second_joint
+      - Third_joint
