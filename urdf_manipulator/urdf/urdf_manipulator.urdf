@@ -5,15 +5,6 @@
 <robot
   name="urdf_manipulator">
 
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-        <robotNamespace>/theRobot</robotNamespace>
-        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-        <legacyModeNS>true</legacyModeNS>   
-    </plugin>
-  </gazebo>
-
-
   <link name="world"/>
   <link
     name="base_link">
@@ -288,6 +279,14 @@
       xyz="0 0 0" />
   </joint>
 
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace></robotNamespace>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        <legacyModeNS>true</legacyModeNS>   
+    </plugin>
+  </gazebo>
+
   <transmission name="First_link_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="First_joint">
@@ -320,5 +319,18 @@
         <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+
+  <gazebo reference="First_link">
+        <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="Second_link">
+        <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="Third_link">
+        <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="End_effector">
+        <selfCollide>true</selfCollide>
+  </gazebo>
 
 </robot>

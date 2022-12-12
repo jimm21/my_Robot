@@ -146,6 +146,8 @@ robot_arm:
     - LazyPRMstar
     - SPARS
     - SPARStwo
+  projection_evaluator: joints(First_joint,Second_joint)
+  longest_valid_segment_fraction: 0.005
 robot_ee:
   default_planner_config: RRT
   planner_configs:
