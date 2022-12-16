@@ -12,8 +12,6 @@
     <group name="robot_arm">
         <joint name="First_joint" />
         <joint name="Second_joint" />
-    </group>
-    <group name="robot_ee">
         <joint name="Third_joint" />
         <joint name="Flange" />
     </group>
@@ -21,26 +19,18 @@
     <group_state name="home_arm" group="robot_arm">
         <joint name="First_joint" value="0" />
         <joint name="Second_joint" value="0" />
-    </group_state>
-    <group_state name="home_ee" group="robot_ee">
         <joint name="Third_joint" value="0" />
     </group_state>
     <group_state name="lying_left" group="robot_arm">
         <joint name="First_joint" value="-1.57" />
         <joint name="Second_joint" value="1.57" />
+        <joint name="Third_joint" value="0" />
     </group_state>
     <group_state name="lying_right" group="robot_arm">
         <joint name="First_joint" value="1.57" />
         <joint name="Second_joint" value="-1.57" />
+        <joint name="Third_joint" value="0" />
     </group_state>
-    <group_state name="ee_left" group="robot_ee">
-        <joint name="Third_joint" value="-1.57" />
-    </group_state>
-    <group_state name="ee_right" group="robot_ee">
-        <joint name="Third_joint" value="1.57" />
-    </group_state>
-    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="hand_ee" parent_link="Second_link" group="robot_ee" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="End_effector" link2="First_link" reason="Never" />
     <disable_collisions link1="End_effector" link2="Second_link" reason="Never" />

@@ -18,7 +18,7 @@
 
         <!--Load and launch the joint trajectory controller-->
         <rosparam file ="$(find urdf_manipulator)/config/joint_trajectory_controller.yaml" command="load"/>
-        <node name= "controller_spawner" pkg= "controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller robot_arm_controller hand_ee_controller"/>
+        <node name= "controller_spawner" pkg= "controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller robot_arm_controller"/>
 
         <!-- Robot State Publisher for TF of each joint: publishes all the current states of the joint, then RViz can visualize -->
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">

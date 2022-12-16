@@ -18,5 +18,13 @@ hardware_interface:
 joint_state_controller:
   type: joint_state_controller/JointStateController
   publish_rate: 50
+
 controller_list:
-  []
+  - name: robot_arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+    - First_joint
+    - Second_joint
+    - Third_joint

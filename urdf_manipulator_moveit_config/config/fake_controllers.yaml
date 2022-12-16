@@ -4,12 +4,7 @@ controller_list:
     joints:
       - First_joint
       - Second_joint
-  - name: fake_robot_ee_controller
-    type: $(arg fake_execution_type)
-    joints:
       - Third_joint
 initial:  # Define initial robot poses.
   - group: robot_arm
     pose: home_arm
-  - group: robot_ee
-    pose: home_ee
