@@ -22,10 +22,13 @@ wpose = group.get_current_pose().pose
 joint_goal = group.get_current_joint_values()
 joint_goal[0] = 7*pi/8
 joint_goal[1] = -2*pi/8
-joint_goal[2] = -5*pi/8
+#joint_goal[2] = -5*pi/8
+joint_goal[2] = 0.0
 
 group.go(joint_goal, wait=True)
 group.stop()
+
+print(group.get_current_pose().pose)
 
 joint_goal = group.get_current_joint_values()
 joint_goal[0] = 4*pi/8

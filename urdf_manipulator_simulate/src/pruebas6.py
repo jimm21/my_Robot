@@ -22,24 +22,22 @@ group.set_planning_time(10.0)
 current_pose = group.get_current_pose().pose
 print(current_pose)
 
-pose_goal = geometry_msgs.msg.Pose()
+pose_goal = [0.0, 0.0, 0.0]
 
 # Pose Position
 x_coordinate = 0.445491651633
-y_coordinate = -0.311112398986
-z_coordinate = 0.517029078873
-pose_goal.position.x = x_coordinate
-pose_goal.position.y = y_coordinate
-pose_goal.position.z = z_coordinate
-
-pose_goal.orientation = current_pose.orientation
+y_coordinate = -0.001
+z_coordinate = 0.8
+pose_goal[0] = x_coordinate
+pose_goal[1] = y_coordinate
+pose_goal[2] = z_coordinate
 
 print(pose_goal)
 print(group.get_goal_tolerance())
 group.set_goal_position_tolerance(0.001)
 group.set_goal_orientation_tolerance(0.1745)
 print(group.get_goal_tolerance())
-group.set_pose_target(pose_goal)
+group.set_position_target(pose_goal)
 plan = group.plan()
 
 if plan.joint_trajectory.points:  # True if trajectory contains points
