@@ -22,6 +22,11 @@
     <!-- Run Rviz and load the default configuration to see the state of the move_group node -->
     <arg name="use_rviz" default="true" />
     <include file="$(find urdf_manipulator_moveit_config)/launch/moveit_rviz.launch" if="$(arg use_rviz)">
-        <arg name="rviz_config" value="$(find urdf_manipulator_moveit_config)/launch/moveit.rviz"/>
+        <!-- <arg name="rviz_config" value="$(find urdf_manipulator_moveit_config)/launch/moveit.rviz"/> -->
+        <arg name="rviz_config" value="$(find urdf_manipulator_simulate)/config/display_rviz_config.rviz"/>
     </include>
+
+    <!-- Launch Your robot arms launch file which loads the robot in Gazebo and spawns the controllers -->
+    <include file = "$(find urdf_manipulator_simulate)/launch/services.launch"/>
+
 </launch>

@@ -120,7 +120,7 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
-catkin_install_python(PROGRAMS scripts/getting_tf_parameters.py scripts/ik_manipulator.py scripts/sequence_planning.py
+catkin_install_python(PROGRAMS scripts/getting_tf_parameters.py scripts/ik_manipulator.py scripts/sequence_planning.py scripts/get_joints_values.py
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

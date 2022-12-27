@@ -17,7 +17,8 @@ def callback(request):
         filecontents = filehandle.readlines()
 
         for line in filecontents:
-            x, y, z = line[:-1].split("\t")
+            if(line[-1] == "\n"): x, y, z = line[:-1].split("\t")
+            else: x, y, z = line[:].split("\t")
             nodes_list.append([float(x), float(y), float(z)])
 
     nodes = np.array(nodes_list, dtype=np.float64) 
@@ -141,6 +142,13 @@ def callback(request):
     tour_final = np.array([tour_0[route[i]] for i in range(len(route))])
     distance = path_distance(route,tour_0)
     # print("Distance: " + str(distance))
+
+    # Plot the points.
+    tour_plot = np.concatenate((np.array([tour_0[route[i]] for i in range(len(route))]), np.array([tour_0[0]])))
+    plt.scatter(tour_0[:,0],tour_0[:,1])
+    # Plot the path.
+    plt.plot(tour_plot[:,0],tour_plot[:,1])
+    plt.show()
 
     ##################### WRITING PATH TO A FILE #######################
 

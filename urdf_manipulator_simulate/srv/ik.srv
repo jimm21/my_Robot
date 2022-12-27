@@ -3,4 +3,4 @@ float64 L1
 float64 L2
 float64 L3
 ---
-my_msg Joints_positions
+int32 cnt

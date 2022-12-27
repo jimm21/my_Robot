@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 import math
+from math import pi
 import rospy
 import tf
-import geometry_msgs.msg
 from tf.transformations import euler_from_quaternion
 from urdf_manipulator_simulate.srv import ik, ikResponse
-from urdf_manipulator_simulate.msg import my_msg
-from urdf_manipulator_simulate.srv import parameters, parametersResponse
-from geometry_msgs.msg import Point
 
 def callback(request):
 
@@ -20,8 +17,11 @@ def callback(request):
     L2 = request.L2
     L3 = request.L3
 
-    the_msg = my_msg()
-    node_list = the_msg.points
+    y0 = 0
+    z0 = L0 + L1 + L2 + L3
+
+    joint_values = []
+    positions_aux = []
 
     with open('/home/user/theRobot_ws/src/urdf_manipulator_simulate/src/mesh_planned.txt', 'r') as filehandle:
         filecontents = filehandle.readlines()
@@ -30,23 +30,46 @@ def callback(request):
             xx, yy, zz = line[:-1].split("\t")
             y = float(yy)
             z = float(zz)
-            node_list.append(Point(0.0, y, z))
+            positions_aux.append([y, z])
+        
+        i = 0
+        index = i
+        dist_min = 1000000.0
+        for pos in positions_aux:
+            aux = math.sqrt((pos[0]-y0)**2 + (pos[1]-z0)**2)
+            if(aux < dist_min): 
+                dist_min = aux
+                index = i
+            i = i + 1
+
+        if (index == 0): positions = positions_aux
+        else: positions = positions_aux[index:] + positions_aux[:index]
+
+    with open('/home/user/theRobot_ws/src/urdf_manipulator_simulate/src/mesh_planned_ordered.txt', 'w') as my_file:
+        
+        for pos in positions:
+            my_file.write(str(pos[0]) + "\t" + str(pos[1]) + "\n")
+            y = pos[0]
+            z = pos[1]
+            z1 = z - L3
+            z2 = z1 - L0
     
-    print(node_list)
-       
-    y = 0.2
-    z = 0.6
+            q2 = -math.acos((z2**2 + y**2 - L1**2 - L2**2)/(2*L1*L2))
+            q1 = math.atan2(z2, y) - math.atan2(L2*math.sin(q2), L1 + L2*math.cos(q2)) - pi/2
+            if(q1 > pi): q1 = q1 - 2*pi
+            elif(q1 < -pi): q1 = q1 + 2*pi
+            q3 = -(q1 + q2)
+            if(q3 > pi): q3 = q3 - 2*pi
+            elif(q3 < -pi): q3 = q3 + 2*pi
 
-    z1 = z - L3
-    z2 = z1 - L0
+            joint_values.append([q1, q2, q3])
 
-    #q2 = math.acos((z2**2 + y**2 - L1**2 - L2**2)/(2*L1*L2))
-    #q1 = math.asin((y*(L1 + L2*math.cos(q2) + z2*L2*math.sin(q2))) /
-    #               ((L1 + L2*math.cos(q2))**2 + (L2*math.sin(q2))**2))
-    q3 = q1 + q2
 
-    return the_msg
+    with open('/home/user/theRobot_ws/src/urdf_manipulator_simulate/src/joint_values.txt', 'w') as my_file:
+        for fila in joint_values:
+            my_file.write(str(fila[0]) + "\t" + str(fila[1]) + "\t" + str(fila[2]) + "\n")
 
+    return len(joint_values)
 
 if __name__ == '__main__':
 
